@@ -25,16 +25,11 @@
   .tab-btn { border: 1px solid #475569; color: #cbd5e1; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s; cursor: pointer; }
   .tab-btn:hover { background-color: #3b82f6; color: white; }
   .fade-page { transition: opacity 0.5s ease; }
-
-  /* Adjust spacing for Contact Type and radio buttons */
-  .contact-type-label { margin-bottom: 2px; }
-  .contact-type-options { margin-top: 2px; margin-bottom: 6px; }
 </style>
 </head>
 <body class="text-gray-200 p-6 md:p-12">
 
 <div class="max-w-6xl mx-auto">
-
   <!-- Header -->
   <header class="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
     <div class="flex items-center gap-4">
@@ -57,7 +52,6 @@
   </header>
 
   <main class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
     <!-- Sidebar -->
     <aside class="md:col-span-1 bg-gray-800 rounded-2xl p-6 shadow-sm flex flex-col gap-6">
       <h2 class="text-lg font-medium text-blue-400">Contact Info</h2>
@@ -65,7 +59,6 @@
         <div><span class="font-bold">Email:</span> DyvoBXN@gmail.com</div>
         <div><span class="font-bold">Time:</span> <span id="currentTime">Loading...</span></div>
 
-        <!-- Sidebar Links -->
         <a href="https://discordapp.com/users/1139581194497970296" target="_blank" 
            class="mt-3 flex items-center justify-center gap-2 text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-400 transition">
            <i class="fab fa-discord"></i> Add me on Discord!
@@ -100,7 +93,6 @@
 
     <!-- Main Content -->
     <section class="md:col-span-2 space-y-6">
-
       <!-- About Page -->
       <div id="aboutPage" class="fade-page">
         <div class="embed-card">
@@ -136,27 +128,22 @@
           <form id="contactForm" class="grid grid-cols-1 gap-4">
             <input name="name" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100" placeholder="Your Name" required>
 
-            <!-- Subject -->
             <input name="subject" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100" placeholder="Subject" required>
 
-            <!-- Contact Type Label -->
-            <div class="text-gray-300 font-medium contact-type-label">Contact Type</div>
-
-            <!-- Radio Toggle -->
-            <div class="flex items-center gap-6 contact-type-options">
+            <!-- Contact Type and Radio Buttons Inline -->
+            <div class="flex items-center gap-4 text-gray-300 font-medium">
+              <span>Contact Type:</span>
               <div class="flex items-center gap-2">
                 <input type="radio" id="contactEmail" name="contactType" value="email" checked class="accent-blue-500">
-                <label for="contactEmail" class="text-gray-300">Email</label>
+                <label for="contactEmail">Email</label>
               </div>
               <div class="flex items-center gap-2">
                 <input type="radio" id="contactDiscord" name="contactType" value="discord" class="accent-blue-500">
-                <label for="contactDiscord" class="text-gray-300">Discord</label>
+                <label for="contactDiscord">Discord</label>
               </div>
             </div>
 
-            <!-- Contact Input -->
             <input id="contactInput" name="contact" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100 placeholder-gray-400" placeholder="Your Email" required>
-
             <textarea name="message" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100 h-28" placeholder="Message" required></textarea>
 
             <button type="submit" class="py-3 rounded-md bg-blue-500 text-white font-medium hover:bg-blue-400 transition">
@@ -166,7 +153,6 @@
           <div id="formStatus" class="mt-3 text-sm"></div>
         </div>
       </div>
-
     </section>
   </main>
 
@@ -174,16 +160,30 @@
 </div>
 
 <script>
-  // Tab switching with fade
+  // Tab switching
   const tabs = { aboutBtn: document.getElementById('aboutBtn'), experienceBtn: document.getElementById('experienceBtn'), contactBtn: document.getElementById('contactBtn') };
   const pages = { aboutPage: document.getElementById('aboutPage'), experiencePage: document.getElementById('experiencePage'), contactPage: document.getElementById('contactPage') };
-  function showPage(pageId, btnId) { Object.values(pages).forEach(p => p.classList.add('hidden')); Object.values(tabs).forEach(b => b.classList.remove('active')); pages[pageId].classList.remove('hidden'); tabs[btnId].classList.add('active'); fadeIn(pages[pageId]); }
-  function fadeIn(element) { element.style.opacity = 0; let op = 0; element.style.display = ''; const timer = setInterval(() => { if(op >= 1) clearInterval(timer); element.style.opacity = op; op += 0.05; }, 15); }
+  function showPage(pageId, btnId) {
+    Object.values(pages).forEach(p => p.classList.add('hidden'));
+    Object.values(tabs).forEach(b => b.classList.remove('active'));
+    pages[pageId].classList.remove('hidden');
+    tabs[btnId].classList.add('active');
+    fadeIn(pages[pageId]);
+  }
+  function fadeIn(element) {
+    element.style.opacity = 0;
+    let op = 0;
+    const timer = setInterval(() => {
+      if(op >= 1) clearInterval(timer);
+      element.style.opacity = op;
+      op += 0.05;
+    }, 15);
+  }
   tabs.aboutBtn.addEventListener('click', () => showPage('aboutPage', 'aboutBtn'));
   tabs.experienceBtn.addEventListener('click', () => showPage('experiencePage', 'experienceBtn'));
   tabs.contactBtn.addEventListener('click', () => showPage('contactPage', 'contactBtn'));
 
-  // Israel time
+  // Israel Time AM/PM
   function updateTime() {
     const now = new Date();
     const israelTime = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Jerusalem', hour: '2-digit', minute: '2-digit', hour12: true }).format(now);
@@ -193,50 +193,40 @@
   updateTime();
 
   // Scroll animations
-  const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.2 });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+  }, { threshold: 0.2 });
   document.querySelectorAll('.embed-card').forEach(card => observer.observe(card));
 
-  // Contact Type Toggle
-  const contactEmail = document.getElementById('contactEmail');
-  const contactDiscord = document.getElementById('contactDiscord');
-  const contactInput = document.getElementById('contactInput');
-  let isEmail = true;
-
-  function updateContactType() {
-    if(contactEmail.checked){
-      isEmail = true;
-      contactInput.placeholder = "Your Email";
-      contactInput.type = "email";
-    } else {
-      isEmail = false;
-      contactInput.placeholder = "Discord Username";
-      contactInput.type = "text";
-    }
-  }
-  contactEmail.addEventListener('change', updateContactType);
-  contactDiscord.addEventListener('change', updateContactType);
-
-  // Discord Webhook Contact Form with ping
-  const webhookUrl = "https://discord.com/api/webhooks/1427198636483280977/dd4QzTmb6SQBNE3K2fbDHua1uS_uhI89dAfJKhnO1SzMp-GIQ8Vd23zgPzt2HcNeK3-b";
+  // Contact form logic
   const contactForm = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
+  const contactInput = document.getElementById('contactInput');
+  const radioEmail = document.getElementById('contactEmail');
+  const radioDiscord = document.getElementById('contactDiscord');
+  const webhookUrl = "https://discord.com/api/webhooks/1427198636483280977/dd4QzTmb6SQBNE3K2fbDHua1uS_uhI89dAfJKhnO1SzMp-GIQ8Vd23zgPzt2HcNeK3-b";
+  const pingId = "1139581194497970296";
+
+  // Change placeholder depending on radio
+  radioEmail.addEventListener('change', () => contactInput.placeholder = "Your Email");
+  radioDiscord.addEventListener('change', () => contactInput.placeholder = "Discord Username");
 
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const subject = e.target.subject.value;
-    const contactValue = e.target.contact.value;
+    const contactType = radioEmail.checked ? "Email" : "Discord";
+    const contactValue = contactInput.value;
     const messageText = e.target.message.value;
-    const contactTypeText = isEmail ? "Email" : "Discord";
 
     const embed = {
       title: "📩 New Portfolio Message",
       color: 3447003,
-      description: `<@1139581194497970296>`, // ping
       fields: [
+        { name: "Ping", value: `<@${pingId}>`, inline: false },
         { name: "Name", value: name, inline: false },
         { name: "Subject", value: subject, inline: false },
-        { name: contactTypeText, value: contactValue, inline: false },
+        { name: contactType, value: contactValue, inline: false },
         { name: "Message", value: messageText, inline: false }
       ],
       timestamp: new Date().toISOString()
@@ -246,7 +236,7 @@
       await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: `<@1139581194497970296>`, embeds: [embed] })
+        body: JSON.stringify({ embeds: [embed] })
       });
       formStatus.textContent = "✅ Message sent successfully!";
       formStatus.classList.remove('text-red-500'); 
