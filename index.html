@@ -267,6 +267,17 @@
     const contactValue = e.target.contactValue.value;
     const messageText = e.target.messageText.value;
 
+
+    if (contactType === "Email") {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(contactValue)) {
+        formStatus.textContent = "❌ Please enter a valid email address.";
+        formStatus.classList.remove('text-green-400');
+        formStatus.classList.add('text-red-500');
+        return;
+      }
+    }
+
     const embed = {
       title: "📩 New Portfolio Message",
       color: 3447003,
