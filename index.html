@@ -37,7 +37,6 @@
     <div class="flex items-center gap-4">
       <div class="rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-400 p-1">
         <div class="w-20 h-20 rounded-xl bg-gray-800 flex items-center justify-center overflow-hidden">
-         <img src="Images/pfp.webp" alt="Profile Picture">
           <img src="Images/pfp.webp" alt="Profile Picture">
         </div>
       </div>
@@ -117,7 +116,6 @@
         <div class="embed-card">
           <h2 class="text-2xl font-semibold mb-4 text-blue-400">Staffing Experience</h2>
           <div class="space-y-4">
-            <!-- Add your staffing entries here as before -->
             <!-- Example experience entries -->
             <div>
               <div class="font-bold text-gray-200">FreshSMP</div>
@@ -163,13 +161,9 @@
   tabs.experienceBtn.addEventListener('click', () => showPage('experiencePage', 'experienceBtn'));
   tabs.contactBtn.addEventListener('click', () => showPage('contactPage', 'contactBtn'));
 
-  // Israel Time (AM/PM, no seconds)
   // Israel time, AM/PM, no seconds
   function updateTime() {
     const now = new Date();
-    const israelTime = now.toLocaleString('en-US', { timeZone: 'Asia/Jerusalem', hour: '2-digit', minute: '2-digit', hour12: true });
-    const tzOffset = '+2'; // GMT+2 fixed for display
-    document.getElementById('currentTime').textContent = `${israelTime} GMT${tzOffset}`;
     const israelTime = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Jerusalem', hour: '2-digit', minute: '2-digit', hour12: true }).format(now);
     document.getElementById('currentTime').textContent = israelTime;
   }
@@ -184,7 +178,6 @@
   const webhookUrl = "https://discord.com/api/webhooks/1427198636483280977/dd4QzTmb6SQBNE3K2fbDHua1uS_uhI89dAfJKhnO1SzMp-GIQ8Vd23zgPzt2HcNeK3-b";
   const contactForm = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
-
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -195,7 +188,6 @@
     const embed = {
       title: "📩 New Portfolio Message",
       color: 3447003,
-      description: `<@1139581194497970296>`, // pings you
       fields: [
         { name: "Ping", value: "<@1139581194497970296>", inline: false },
         { name: "Name", value: name, inline: false },
@@ -207,7 +199,6 @@
     };
 
     try {
-      await fetch(webhookUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ embeds: [embed] }) });
       await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -218,13 +209,4 @@
       formStatus.classList.add('text-green-400');
       contactForm.reset();
     } catch (err) {
-      formStatus.textContent = "❌ Failed to send message. Try again later.";
-      formStatus.classList.remove('text-green-400'); 
-      formStatus.classList.add('text-red-500');
-    }
-  });
-</script>
-
-</body>
-</html>
       formStatus.textContent = "❌ Failed to send
