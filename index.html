@@ -25,6 +25,10 @@
   .tab-btn { border: 1px solid #475569; color: #cbd5e1; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s; cursor: pointer; }
   .tab-btn:hover { background-color: #3b82f6; color: white; }
   .fade-page { transition: opacity 0.5s ease; }
+
+  /* Adjust spacing for Contact Type and radio buttons */
+  .contact-type-label { margin-bottom: 2px; }
+  .contact-type-options { margin-top: 2px; margin-bottom: 6px; }
 </style>
 </head>
 <body class="text-gray-200 p-6 md:p-12">
@@ -136,10 +140,10 @@
             <input name="subject" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100" placeholder="Subject" required>
 
             <!-- Contact Type Label -->
-            <div class="text-gray-300 font-medium mt-2">Contact Type</div>
+            <div class="text-gray-300 font-medium contact-type-label">Contact Type</div>
 
             <!-- Radio Toggle -->
-            <div class="flex items-center gap-6 mt-1">
+            <div class="flex items-center gap-6 contact-type-options">
               <div class="flex items-center gap-2">
                 <input type="radio" id="contactEmail" name="contactType" value="email" checked class="accent-blue-500">
                 <label for="contactEmail" class="text-gray-300">Email</label>
@@ -151,7 +155,7 @@
             </div>
 
             <!-- Contact Input -->
-            <input id="contactInput" name="contact" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100 placeholder-gray-400 mt-2" placeholder="Your Email" required>
+            <input id="contactInput" name="contact" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100 placeholder-gray-400" placeholder="Your Email" required>
 
             <textarea name="message" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100 h-28" placeholder="Message" required></textarea>
 
@@ -179,7 +183,7 @@
   tabs.experienceBtn.addEventListener('click', () => showPage('experiencePage', 'experienceBtn'));
   tabs.contactBtn.addEventListener('click', () => showPage('contactPage', 'contactBtn'));
 
-  // Israel time, AM/PM, no seconds
+  // Israel time
   function updateTime() {
     const now = new Date();
     const israelTime = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Jerusalem', hour: '2-digit', minute: '2-digit', hour12: true }).format(now);
@@ -228,7 +232,7 @@
     const embed = {
       title: "📩 New Portfolio Message",
       color: 3447003,
-      description: `<@1139581194497970296>`, // ping first
+      description: `<@1139581194497970296>`, // ping
       fields: [
         { name: "Name", value: name, inline: false },
         { name: "Subject", value: subject, inline: false },
@@ -242,7 +246,7 @@
       await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: `<@1139581194497970296>`, embeds: [embed] }) // ping in content
+        body: JSON.stringify({ content: `<@1139581194497970296>`, embeds: [embed] })
       });
       formStatus.textContent = "✅ Message sent successfully!";
       formStatus.classList.remove('text-red-500'); 
