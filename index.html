@@ -1,313 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Devio - Portfolio</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Experience Page -->
+<div id="experiencePage" class="fade-page hidden space-y-4">
 
-<style>
-  body { background-color: #0f172a; font-family: 'Inter', sans-serif; } 
-  .embed-card {
-    background-color: #1e293b;
-    border-left: 4px solid #3b82f6;
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  .embed-card.visible { opacity: 1; transform: translateY(0); }
-  .embed-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(59,130,246,0.4);}
-  .tab-btn.active { background-color: #3b82f6; color: white; border: none; }
-  .tab-btn { border: 1px solid #475569; color: #cbd5e1; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s; cursor: pointer; }
-  .tab-btn:hover { background-color: #3b82f6; color: white; }
-  .fade-page { transition: opacity 0.5s ease; }
-  .radio-label { display: flex; align-items: center; gap: 4px; margin-right: 15px; cursor: pointer; }
-</style>
-</head>
-<body class="text-gray-200 p-6 md:p-12">
+  <!-- RuneMC -->
+  <div class="embed-card">
+    <h3 class="text-xl font-semibold text-blue-400">RuneMC</h3>
+    <p class="text-gray-400 text-sm">September 17, 2024 - Present</p>
+    <p class="italic text-gray-400 text-sm">Moderator | Still</p>
+    <p class="italic text-gray-400 text-sm">Earth SMP | Avg 10 Players</p>
+    <p class="text-gray-400 text-sm">IP: rune-mc.net</p>
+    <p class="text-gray-200 mt-2">
+      This was my first time staffing on an EarthSMP server. I helped handle reports, supported
+      players, and kept the community running smoothly while improving my early moderation skills.
+    </p>
+  </div>
 
-<div class="max-w-6xl mx-auto">
-  <!-- Header -->
-  <header class="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
-    <div class="flex items-center gap-4">
-      <div class="rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-400 p-1">
-        <div class="w-20 h-20 rounded-xl bg-gray-800 flex items-center justify-center overflow-hidden">
-          <img src="Images/pfp.webp" alt="Profile Picture">
-        </div>
-      </div>
-      <div>
-        <h1 class="text-3xl font-bold text-blue-400">Devio</h1>
-        <p class="text-sm text-gray-400">Server Manager & Web Developer</p>
-      </div>
-    </div>
-    <nav class="flex items-center gap-3 text-sm">
-      <button id="aboutBtn" class="tab-btn active">About</button>
-      <button id="experienceBtn" class="tab-btn">Experience</button>
-      <button id="contactBtn" class="tab-btn">Contact</button>
-    </nav>
-  </header>
+  <!-- AzryxMC -->
+  <div class="embed-card">
+    <h3 class="text-xl font-semibold text-blue-400">AzryxMC</h3>
+    <p class="text-gray-400 text-sm">October 26, 2025 - Present</p>
+    <p class="italic text-gray-400 text-sm">Moderator | Still</p>
+    <p class="italic text-gray-400 text-sm">LifeSteal | Unreleased</p>
+    <p class="text-gray-400 text-sm">Discord: https://discord.azryxmc.fun/</p>
+    <p class="text-gray-400 text-sm">IP: play.azryxmc.fun</p>
+    <p class="text-gray-200 mt-2">
+      Helping prepare the server before release by testing features, giving feedback, organizing
+      community spaces, and making sure everything runs smoothly for launch. Assisting with staff
+      coordination and general moderation planning.
+    </p>
+  </div>
 
-  <main class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <!-- Sidebar -->
-    <aside class="md:col-span-1 bg-gray-800 rounded-2xl p-6 shadow-sm flex flex-col gap-6">
-      <h2 class="text-lg font-medium text-blue-400">Contact Info</h2>
-      <div class="flex flex-col gap-2">
-        <div><span class="font-bold">Email:</span> DyvoBXN@gmail.com</div>
-        <div><span class="font-bold">Time:</span> <span id="currentTime">Loading...</span></div>
+  <!-- FreshSMP -->
+  <div class="embed-card">
+    <h3 class="text-xl font-semibold text-blue-400">FreshSMP</h3>
+    <p class="text-gray-400 text-sm">October 23, 2024 - December 17, 2024</p>
+    <p class="italic text-gray-400 text-sm">Jr. Moderator | Resigned</p>
+    <p class="italic text-gray-400 text-sm">Survival / Lifesteal / Skyblock | Avg 600–700 Players</p>
+    <p class="text-gray-400 text-sm">Discord Invite: discord.gg/trCh2mEt</p>
+    <p class="text-gray-400 text-sm">IP: play.freshsmp.fun</p>
+    <p class="text-gray-200 mt-2">Gained familiarity with CoreProtect and learned to catch rule breakers.</p>
+  </div>
 
-        <!-- Sidebar Links -->
-        <a href="https://discordapp.com/users/1139581194497970296" target="_blank" 
-           class="mt-3 flex items-center justify-center gap-2 text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-400 transition">
-           <i class="fab fa-discord"></i> Add me on Discord!
-        </a>
+  <!-- Gemstone -->
+  <div class="embed-card">
+    <h3 class="text-xl font-semibold text-blue-400">Gemstone</h3>
+    <p class="italic text-gray-400 text-sm">Moderator | Currently Staff</p>
+    <p class="italic text-gray-400 text-sm">Lifesteal | Player Count: N/A</p>
+    <p class="text-gray-400 text-sm">Discord Invite: discord.gg/mvbuGWq3</p>
+    <p class="text-gray-400 text-sm">IP: play.gemstone.gg (Java: 25565 | Bedrock: 19132)</p>
+    <p class="text-gray-200 mt-2">Improved knowledge command in both Minecraft and Discord.</p>
+  </div>
 
-        <a href="https://namemc.com/profile/NotDevio.1" target="_blank" 
-           class="mt-2 flex items-center justify-center gap-2 text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-400 transition">
-           <i class="fas fa-user"></i> NameMC Profile
-        </a>
+  <!-- TyreSMP -->
+  <div class="embed-card">
+    <h3 class="text-xl font-semibold text-blue-400">TyreSMP</h3>
+    <p class="italic text-gray-400 text-sm">Sr. Moderator | Server Shut Down</p>
+    <p class="italic text-gray-400 text-sm">Survival | Avg 20–30 Players</p>
+    <p class="text-gray-400 text-sm">Discord/IP Unavailable</p>
+    <p class="text-gray-200 mt-2">Learned how to keep a tidy server and enforce rules.</p>
+  </div>
 
-        <a href="https://paypal.me/NotDevio" target="_blank" 
-           class="mt-2 flex items-center justify-center gap-2 text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-400 transition">
-           <i class="fab fa-paypal"></i> PayPal
-        </a>
-      </div>
+  <!-- CyclesMC -->
+  <div class="embed-card">
+    <h3 class="text-xl font-semibold text-blue-400">CyclesMC</h3>
+    <p class="italic text-gray-400 text-sm">Admin | Server Shut Down</p>
+    <p class="italic text-gray-400 text-sm">Survival | Avg 10 Players</p>
+    <p class="text-gray-400 text-sm">Discord/IP Unavailable</p>
+    <p class="text-gray-200 mt-2">Gained more understanding of rule enforcement and admin responsibilities.</p>
+  </div>
 
-      <div class="mt-6 border-t pt-4">
-        <h3 class="text-sm font-medium text-gray-400 mb-2">Skills</h3>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2 py-1 text-xs rounded-full bg-gray-700 border border-gray-600">Bilingual - (English, Arabic, Hebrew)</span>
-          <span class="px-2 py-1 text-xs rounded-full bg-gray-700 border border-gray-600">C# / ASPX / XAML</span>
-          <span class="px-2 py-1 text-xs rounded-full bg-gray-700 border border-gray-600">Discord Management</span>
-          <span class="px-2 py-1 text-xs rounded-full bg-gray-700 border border-gray-600">Discord setups</span>
-          <span class="px-2 py-1 text-xs rounded-full bg-gray-700 border border-gray-600">Mature and formality</span>
-          <span class="px-2 py-1 text-xs rounded-full bg-gray-700 border border-gray-600">Plugin Knowledge</span>
-          <span class="px-2 py-1 text-xs rounded-full bg-gray-700 border border-gray-600">Team leader and listener</span>
-          <span class="px-2 py-1 text-xs rounded-full bg-gray-700 border border-gray-600">Professional</span>
-          <span class="px-2 py-1 text-xs rounded-full bg-gray-700 border border-gray-600">Self Motivating</span>
-        </div>
-      </div>
-    </aside>
+  <!-- GatoSMP -->
+  <div class="embed-card">
+    <h3 class="text-xl font-semibold text-blue-400">GatoSMP</h3>
+    <p class="italic text-gray-400 text-sm">Co-Owner | Server Shut Down</p>
+    <p class="italic text-gray-400 text-sm">Survival | Avg 20–30 Players</p>
+    <p class="text-gray-400 text-sm">Discord/IP Unavailable</p>
+    <p class="text-gray-200 mt-2">Learned how to start a Minecraft server from scratch and gained basic plugin knowledge.</p>
+  </div>
 
-    <!-- Main Content -->
-    <section class="md:col-span-2 space-y-6">
-      <!-- About Page -->
-      <div id="aboutPage" class="fade-page">
-        <div class="embed-card">
-          <h2 class="text-2xl font-semibold mb-4 text-blue-400">About Me</h2>
-          <p class="text-gray-200 leading-relaxed">
-            Hello! I am Devio, a 17-year-old professional server manager and web developer.  
-            I specialize in managing Minecraft servers and organizing online communities.  
-            I have been staffing since May 12, 2020, gaining years of experience in moderation, administration, and server management.  
-            I enjoy building solutions that make communities thrive.
-          </p>
-        </div>
-      </div>
+  <!-- HyperNovaSMP -->
+  <div class="embed-card">
+    <h3 class="text-xl font-semibold text-blue-400">HyperNovaSMP</h3>
+    <p class="italic text-gray-400 text-sm">Sr. Moderator | Server Shut Down</p>
+    <p class="italic text-gray-400 text-sm">Survival | Avg 20–30 Players</p>
+    <p class="text-gray-400 text-sm">Discord/IP Unavailable</p>
+    <p class="text-gray-200 mt-2">First private server staffing experience, helped manage a small community.</p>
+  </div>
 
-      <!-- Experience Page -->
-      <div id="experiencePage" class="fade-page hidden space-y-4">
-        <!-- FreshSMP -->
-        <div class="embed-card">
-          <h3 class="text-xl font-semibold text-blue-400">FreshSMP</h3>
-          <p class="text-gray-400 text-sm mb-1">October 23, 2024 - December 17, 2024</p>
-          <p class="italic text-gray-400 text-sm">Jr. Moderator | Resigned</p>
-          <p class="italic text-gray-400 text-sm">Survival / Lifesteal / Skyblock | Avg 600–700 Players</p>
-          <p class="text-gray-400 text-sm">Discord Invite: discord.gg/trCh2mEt</p>
-          <p class="text-gray-400 text-sm">IP: play.freshsmp.fun</p>
-          <p class="text-gray-200 mt-2">Gained familiarity with CoreProtect and learned to catch rule breakers.</p>
-        </div>
+  <!-- Stranded -->
+  <div class="embed-card">
+    <h3 class="text-xl font-semibold text-blue-400">Stranded</h3>
+    <p class="text-gray-400 text-sm">March 26, 2025 - April 2, 2025</p>
+    <p class="italic text-gray-400 text-sm">Support | Unprofessional Staff/Owner</p>
+    <p class="italic text-gray-400 text-sm">Box SMP | Avg 50 Players</p>
+    <p class="text-gray-400 text-sm">Discord Invite: discord.gg/F8MXygch</p>
+    <p class="text-gray-400 text-sm">IP: stranded.lol</p>
+    <p class="text-gray-200 mt-2">Nothing new learned, left after a week.</p>
+  </div>
 
-        <!-- Gemstone -->
-        <div class="embed-card">
-          <h3 class="text-xl font-semibold text-blue-400">Gemstone</h3>
-          <p class="italic text-gray-400 text-sm">Moderator | Currently Staff</p>
-          <p class="italic text-gray-400 text-sm">Lifesteal | Player Count: N/A</p>
-          <p class="text-gray-400 text-sm">Discord Invite: discord.gg/mvbuGWq3</p>
-          <p class="text-gray-400 text-sm">IP: play.gemstone.gg (Java: 25565 | Bedrock: 19132)</p>
-          <p class="text-gray-200 mt-2">Improved knowledge command in both Minecraft and Discord.</p>
-        </div>
-
-        <!-- TyreSMP -->
-        <div class="embed-card">
-          <h3 class="text-xl font-semibold text-blue-400">TyreSMP</h3>
-          <p class="italic text-gray-400 text-sm">Sr. Moderator | Server Shut Down</p>
-          <p class="italic text-gray-400 text-sm">Survival | Avg 20–30 Players</p>
-          <p class="text-gray-400 text-sm">Discord/IP Unavailable</p>
-          <p class="text-gray-200 mt-2">Learned how to keep a tidy server and enforce rules.</p>
-        </div>
-
-        <!-- CyclesMC -->
-        <div class="embed-card">
-          <h3 class="text-xl font-semibold text-blue-400">CyclesMC</h3>
-          <p class="italic text-gray-400 text-sm">Admin | Server Shut Down</p>
-          <p class="italic text-gray-400 text-sm">Survival | Avg 10 Players</p>
-          <p class="text-gray-400 text-sm">Discord/IP Unavailable</p>
-          <p class="text-gray-200 mt-2">Gained more understanding of rule enforcement and admin responsibilities.</p>
-        </div>
-
-        <!-- GatoSMP -->
-        <div class="embed-card">
-          <h3 class="text-xl font-semibold text-blue-400">GatoSMP</h3>
-          <p class="italic text-gray-400 text-sm">Co-Owner | Server Shut Down</p>
-          <p class="italic text-gray-400 text-sm">Survival | Avg 20–30 Players</p>
-          <p class="text-gray-400 text-sm">Discord/IP Unavailable</p>
-          <p class="text-gray-200 mt-2">Learned how to start a Minecraft server from scratch and gained basic plugin knowledge.</p>
-        </div>
-
-        <!-- HyperNovaSMP -->
-        <div class="embed-card">
-          <h3 class="text-xl font-semibold text-blue-400">HyperNovaSMP</h3>
-          <p class="italic text-gray-400 text-sm">Sr. Moderator | Server Shut Down</p>
-          <p class="italic text-gray-400 text-sm">Survival | Avg 20–30 Players</p>
-          <p class="text-gray-400 text-sm">Discord/IP Unavailable</p>
-          <p class="text-gray-200 mt-2">First private server staffing experience, helped manage a small community.</p>
-        </div>
-
-        <!-- Stranded -->
-        <div class="embed-card">
-          <h3 class="text-xl font-semibold text-blue-400">Stranded</h3>
-          <p class="text-gray-400 text-sm">March 26, 2025 - April 2, 2025</p>
-          <p class="italic text-gray-400 text-sm">Support | Unprofessional Staff/Owner</p>
-          <p class="italic text-gray-400 text-sm">Box SMP | Avg 50 Players</p>
-          <p class="text-gray-400 text-sm">Discord Invite: discord.gg/F8MXygch</p>
-          <p class="text-gray-400 text-sm">IP: stranded.lol</p>
-          <p class="text-gray-200 mt-2">Nothing new learned, left after a week.</p>
-        </div>
-
-        
-      </div>
-
-      <!-- Contact Page -->
-      <div id="contactPage" class="fade-page hidden">
-        <div class="embed-card">
-          <h2 class="text-2xl font-semibold mb-4 text-blue-400">Contact Me</h2>
-          <form id="contactForm" class="grid grid-cols-1 gap-4">
-            <input name="name" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100" placeholder="Your Name" required>
-            <input name="subject" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100" placeholder="Subject" required>
-
-            <!-- Contact Type Toggle -->
-            <div class="flex items-center gap-4">
-              <span class="text-gray-200" style="margin-right:5px;">Contact Type:</span>
-              <label class="radio-label"><input type="radio" name="contactType" value="Discord" checked> Discord</label>
-              <label class="radio-label"><input type="radio" name="contactType" value="Email"> Email</label>
-            </div>
-
-            <input id="contactInput" name="contactValue" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100" placeholder="Discord Username" required>
-            <textarea name="messageText" class="p-3 border rounded-md text-sm bg-gray-900 border-gray-700 text-gray-100 h-28" placeholder="Message" required></textarea>
-            <button type="submit" class="py-3 rounded-md bg-blue-500 text-white font-medium hover:bg-blue-400 transition">
-              Send Message
-            </button>
-          </form>
-          <div id="formStatus" class="mt-3 text-sm"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="mt-10 text-center text-sm text-gray-500">© 2020 - 2025 Devio</footer>
 </div>
-
-<script>
-  // Tab switching
-  const tabs = { aboutBtn: document.getElementById('aboutBtn'), experienceBtn: document.getElementById('experienceBtn'), contactBtn: document.getElementById('contactBtn') };
-  const pages = { aboutPage: document.getElementById('aboutPage'), experiencePage: document.getElementById('experiencePage'), contactPage: document.getElementById('contactPage') };
-  function showPage(pageId, btnId) { 
-    Object.values(pages).forEach(p => p.classList.add('hidden')); 
-    Object.values(tabs).forEach(b => b.classList.remove('active')); 
-    pages[pageId].classList.remove('hidden'); 
-    tabs[btnId].classList.add('active'); 
-    fadeIn(pages[pageId]); 
-  }
-  function fadeIn(element) { 
-    element.style.opacity = 0; let op = 0; element.style.display = ''; 
-    const timer = setInterval(() => { if(op >= 1) clearInterval(timer); element.style.opacity = op; op += 0.05; }, 15); 
-  }
-  tabs.aboutBtn.addEventListener('click', () => showPage('aboutPage', 'aboutBtn'));
-  tabs.experienceBtn.addEventListener('click', () => showPage('experiencePage', 'experienceBtn'));
-  tabs.contactBtn.addEventListener('click', () => showPage('contactPage', 'contactBtn'));
-
-  // GMT+2 Time
-  function updateTime() {
-    const now = new Date();
-    const time = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }).format(now);
-    document.getElementById('currentTime').textContent = `${time} GMT+2`;
-  }
-  setInterval(updateTime, 60000);
-  updateTime();
-
-  // Scroll animations
-  const observer = new IntersectionObserver(entries => { 
-    entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); 
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.embed-card').forEach(card => observer.observe(card));
-
-  // Contact Type toggle
-  const contactInput = document.getElementById('contactInput');
-  const contactRadios = document.getElementsByName('contactType');
-  contactRadios.forEach(radio => {
-    radio.addEventListener('change', () => {
-      contactInput.placeholder = radio.value === 'Discord' ? 'Discord Username' : 'Email';
-    });
-  });
-
-  // Discord Webhook Contact Form
-  const webhookUrl = "https://discord.com/api/webhooks/1427198636483280977/dd4QzTmb6SQBNE3K2fbDHua1uS_uhI89dAfJKhnO1SzMp-GIQ8Vd23zgPzt2HcNeK3-b";
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
-  const pingId = "1139581194497970296";
-
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const subject = e.target.subject.value;
-    const contactType = Array.from(contactRadios).find(r => r.checked).value;
-    const contactValue = e.target.contactValue.value;
-    const messageText = e.target.messageText.value;
-
-
-    if (contactType === "Email") {
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(contactValue)) {
-        formStatus.textContent = "❌ Please enter a valid email address.";
-        formStatus.classList.remove('text-green-400');
-        formStatus.classList.add('text-red-500');
-        return;
-      }
-    }
-
-    const embed = {
-      title: "📩 New Portfolio Message",
-      color: 3447003,
-      fields: [
-        { name: "Name:", value: name, inline: false },
-        { name: "Subject:", value: subject, inline: false },
-        { name: `${contactType}:`, value: contactValue, inline: false },
-        { name: "Message:", value: messageText, inline: false }
-      ],
-      timestamp: new Date().toISOString()
-    };
-
-    try {
-      await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: `<@${pingId}>`, embeds: [embed] })
-      });
-      formStatus.textContent = "✅ Message sent successfully!";
-      formStatus.classList.remove('text-red-500'); 
-      formStatus.classList.add('text-green-400');
-      contactForm.reset();
-    } catch (err) {
-      formStatus.textContent = "❌ Failed to send message. Try again later.";
-      formStatus.classList.remove('text-green-400'); 
-      formStatus.classList.add('text-red-500');
-    }
-  });
-</script>
-
-</body>
-</html>
-
