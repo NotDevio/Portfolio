@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devio - Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+* { scrollbar-width: thin; scrollbar-color: #3b82f6 #1e293b; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #1e293b; }
+::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1a1f3a 100%);
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  min-height: 100vh;
+  user-select: none;
+}
+
+/* Allow selection only for specific classes */
+.selectable, .selectable * { user-select: text; }
+
+.embed-card {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-left: 4px solid #3b82f6;
+  padding: 2rem;
+  border-radius: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.embed-card.visible { opacity: 1; transform: translateY(0); }
+.embed-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
+.tab-btn {
+  background: transparent;
+  border: 2px solid #475569;
+  color: #cbd5e1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.tab-btn:hover { border-color: #3b82f6; color: #3b82f6; transform: translateY(-2px); }
+.tab-btn.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border-color: #2563eb;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.fade-page { transition: opacity 0.5s ease; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.radio-label {
+  display: flex; align-items: center; gap: 8px; margin-right: 15px; cursor: pointer;
+  transition: color 0.3s ease;
+}
+.radio-label:hover { color: #3b82f6; }
+.radio-label input[type="radio"] { cursor: pointer; accent-color: #3b82f6; }
+
+.section-title {
+  font-size: 1.75rem; font-weight: 700; color: #f1f5f9;
+  margin-bottom: 2rem; position: relative; padding-bottom: 1rem;
+}
+.section-title::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; width: 60px; height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border-radius: 2px;
+}
+
+.skill-tag {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd; padding: 0.5rem 1rem; border-radius: 0.5rem;
+  font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease;
+}
+.skill-tag:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white; padding: 0.7rem 1.5rem; border: none; border-radius: 0.75rem;
+  font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3); font-size: 0.95rem;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(59, 130, 246, 0.4); }
+.btn-primary:active { transform: translateY(-1px); }
+
+.social-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white; padding: 0.7rem 1.2rem; border: none; border-radius: 0.75rem;
+  text-decoration: none; font-weight: 600; font-size: 0.9rem;
+  transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+.social-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35); }
+
+.experience-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem; }
+.meta-badge { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; }
+
+input, textarea { transition: all 0.3s ease; }
+input:focus, textarea:focus { outline: none; background: #1a2744 !important; border-color: #3b82f6 !important; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+
+.form-status { padding: 1rem; border-radius: 0.75rem; font-weight: 600; margin-top: 1rem; text-align: center; }
+
+/* Disable right-click context menu */
+body { -webkit-touch-callout: none; }
+</style>
+</head>
+<body class="text-gray-300 p-6 md:p-12">
+
+<div class="max-w-6xl mx-auto">
+
+<!-- Header -->
+<header class="mb-12">
+  <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-gray-700">
+    <div class="flex items-center gap-6">
+      <div class="relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl blur-lg opacity-50"></div>
+        <div class="relative rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-400 p-1">
+          <div class="w-24 h-24 rounded-xl bg-gray-800 flex items-center justify-center overflow-hidden">
+            <img src="Images/pfp.webp" alt="Profile Picture" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">Devio</h1>
+        <p class="text-gray-400 text-lg mt-1">Server Manager & Web Developer</p>
+      </div>
+    </div>
+
+    <nav class="flex flex-wrap items-center justify-center gap-3">
+      <button id="aboutBtn" class="tab-btn active">About</button>
+      <button id="experienceBtn" class="tab-btn">Experience</button>
+      <button id="contactBtn" class="tab-btn">Contact</button>
+    </nav>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+<!-- Sidebar -->
+<aside class="md:col-span-1">
+<div class="sticky top-8">
+  <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 shadow-xl border border-gray-700">
+    <h2 class="text-lg font-bold text-blue-400 mb-6 flex items-center gap-2">
+      <i class="fas fa-address-card"></i> Contact Info
+    </h2>
+    <div class="space-y-4 mb-6">
+      <div class="text-sm">
+        <span class="text-gray-400">Email</span>
+        <p class="text-gray-100 font-semibold mt-1 selectable">DyvoBXN@gmail.com</p>
+      </div>
+      <div class="text-sm">
+        <span class="text-gray-400">Timezone</span>
+        <p class="text-gray-100 font-semibold mt-1"><span id="currentTime">Loading...</span></p>
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="space-y-3 mb-6">
+      <a href="https://discordapp.com/users/1139581194497970296" target="_blank" class="social-btn w-full justify-center">
+        <i class="fab fa-discord"></i> Discord
+      </a>
+      <a href="https://namemc.com/profile/NotDevio.1" target="_blank" class="social-btn w-full justify-center">
+        <i class="fas fa-user"></i> NameMC
+      </a>
+    </div>
+
+    <!-- Skills -->
+    <div class="border-t border-gray-700 pt-6">
+      <h3 class="text-sm font-bold text-gray-300 mb-4 flex items-center gap-2">
+        <i class="fas fa-star"></i> Skills
+      </h3>
+      <div class="flex flex-wrap gap-2">
+        <span class="skill-tag">Bilingual (EN, AR, HE)</span>
+        <span class="skill-tag">C# / ASPX / XAML</span>
+        <span class="skill-tag">Discord Management</span>
+        <span class="skill-tag">Server Setup</span>
+        <span class="skill-tag">Plugin Knowledge</span>
+        <span class="skill-tag">Team Leadership</span>
+        <span class="skill-tag">Professional</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</aside>
+
+<!-- Pages -->
+<section class="md:col-span-2 space-y-6">
+  <!-- About -->
+  <div id="aboutPage" class="fade-page">
+    <div class="embed-card">
+      <h2 class="section-title">About Me</h2>
+      <p class="text-gray-300 leading-relaxed text-lg mb-4">
+        Hello! I'm <span class="text-blue-400 font-semibold">Devio</span>, a 17-year-old professional server manager and web developer with a passion for building thriving online communities.
+      </p>
+      <p class="text-gray-300 leading-relaxed mb-6">
+        I specialize in managing Minecraft servers, organizing communities, and delivering quality moderation and administration. With experience since May 12, 2020, I've developed expertise in:
+      </p>
+      <ul class="space-y-3 mb-4">
+        <li class="text-gray-300 flex items-center gap-3">
+          <span class="text-green-400 font-bold">✓</span>
+          Server administration and community management
+        </li>
+        <li class="text-gray-300 flex items-center gap-3">
+          <span class="text-green-400 font-bold">✓</span>
+          Discord setup and moderation workflows
+        </li>
+        <li class="text-gray-300 flex items-center gap-3">
+          <span class="text-green-400 font-bold">✓</span>
+          Web development and technical solutions
+        </li>
+        <li class="text-gray-300 flex items-center gap-3">
+          <span class="text-green-400 font-bold">✓</span>
+          Leadership and team coordination
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Currently Active -->
+  <div id="experiencePage" class="fade-page hidden space-y-4">
+    <div class="embed-card">
+      <h3 class="text-blue-400 text-sm font-bold uppercase tracking-wider mb-4">Currently Active</h3>
+    </div>
+
+    <!-- HeartsSMP -->
+    <div class="embed-card">
+      <div class="flex justify-between items-start mb-3">
+        <h3 class="text-xl font-semibold text-blue-300">HeartsSMP</h3>
+        <span style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); color: #86efac; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; font-size: 0.85rem;">Active</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem;">
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Innovator Manager</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">LifeSteal • 50-60 Players</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">January 1, 2026 - Present</span>
+      </div>
+      <p class="text-gray-400 text-sm mb-3">
+        <i class="fas fa-link text-blue-400"></i> <a href="https://discord.gg/bKg9Vy3qFx" target="_blank" class="text-blue-300 hover:text-blue-200 ml-2 selectable">discord.gg/HeartsSMP</a> | IP: <span class="font-mono selectable">Play.heartsmp.net</span>
+      </p>
+      <p class="text-gray-300">Learned how to analyze competing Minecraft servers, identify strengths and weaknesses, and propose meaningful improvements focused on player retention and gameplay flow.</p>
+    </div>
+
+    <!-- AzryxMC -->
+    <div class="embed-card">
+      <div class="flex justify-between items-start mb-3">
+        <h3 class="text-xl font-semibold text-blue-300">AzryxMC</h3>
+        <span style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); color: #86efac; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; font-size: 0.85rem;">Active</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem;">
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Moderator</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">LifeSteal • 3 Players Average</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">October 26, 2025 - Present</span>
+      </div>
+      <p class="text-gray-400 text-sm mb-3">
+        <i class="fas fa-link text-blue-400"></i> <a href="https://discord.gg/AzryxMC" target="_blank" class="text-blue-300 hover:text-blue-200 ml-2 selectable">discord.gg/AzryxMC</a> | IP: <span class="font-mono selectable">play.azryxmc.fun</span>
+      </p>
+      <p class="text-gray-300">Assisting with pre-release preparations — testing features, providing feedback, organizing staff workflows, and helping keep the community space clean and ready for launch.</p>
+    </div>
+
+    
+<!-- Previous Experience -->
+
+      <div class="embed-card">
+      <h3 class="text-blue-400 text-sm font-bold uppercase tracking-wider mb-4">Previous Experience</h3>
+    </div>
+    <!-- FreshSMP -->
+    <div class="embed-card">
+      <div class="flex justify-between items-start mb-3">
+        <h3 class="text-xl font-semibold text-blue-300">RuneMC</h3>
+        <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; font-size: 0.85rem;">Resigned</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem;">
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Moderator</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Earth SMP • 10 Players Average</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">September 17, 2024 - January 24, 2026</span>
+      </div>
+      <p class="text-gray-400 text-sm mb-3">
+        <i class="fas fa-link text-blue-400"></i> IP: <span class="font-mono selectable">rune-mc.net</span>
+      </p>
+      <p class="text-gray-300">This was my first experience staffing on an EarthSMP server. I helped manage player issues, kept the community organized, and ensured the gameplay environment stayed fair and enjoyable.</p>
+    </div>
+
+    <!-- OreBound Network -->
+    <div class="embed-card">
+      <div class="flex justify-between items-start mb-3">
+        <h3 class="text-xl font-semibold text-blue-300">OreBound Network</h3>
+        <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; font-size: 0.85rem;">Resigned</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem;">
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Helper</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">BoxSMP • 5-10 Players</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">December 6, 2025 - Present</span>
+      </div>
+      <p class="text-gray-400 text-sm mb-3">
+        <i class="fas fa-link text-blue-400"></i> <a href="https://discord.gg/Taw7x83sz8" target="_blank" class="text-blue-300 hover:text-blue-200 ml-2 selectable">discord.gg/OreBound</a> | IP: <span class="font-mono selectable">OreBound.net</span>
+      </p>
+      <p class="text-gray-300">Learned how to handle player reports, support the community, and work with the staff team to keep the BoxSMP server running smoothly.</p>
+    </div>
+
+    <!-- Gemstone -->
+    <div class="embed-card">
+      <div class="flex justify-between items-start mb-3">
+        <h3 class="text-xl font-semibold text-blue-300">Gemstone</h3>
+        <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; font-size: 0.85rem;">Removed</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem;">
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Moderator</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Lifesteal</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">May 16, 2024 - December 9, 2025</span>
+      </div>
+      <p class="text-gray-400 text-sm mb-3">
+        <i class="fas fa-link text-blue-400"></i> <a href="https://discord.gg/Gemstone" target="_blank" class="text-blue-300 hover:text-blue-200 ml-2 selectable">discord.gg/Gemstone</a> | IP: <span class="font-mono selectable">play.gemstone.gg (Java: 25565 | Bedrock: 19132)</span>
+      </p>
+      <p class="text-gray-300">Improved knowledge of commands in both Minecraft and Discord. Staff team was disbanded.</p>
+    </div>
+
+    <!-- Stranded -->
+    <div class="embed-card">
+      <div class="flex justify-between items-start mb-3">
+        <h3 class="text-xl font-semibold text-blue-300">Stranded</h3>
+        <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; font-size: 0.85rem;">Resigned</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem;">
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Support</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Box SMP • 50 Players Average</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">March 26 - April 2, 2025</span>
+      </div>
+      <p class="text-gray-400 text-sm mb-3">
+        <i class="fas fa-link text-blue-400"></i> <a href="https://discord.gg/Stranded" target="_blank" class="text-blue-300 hover:text-blue-200 ml-2 selectable">discord.gg/Stranded</a> | IP: <span class="font-mono selectable">stranded.lol</span>
+      </p>
+      <p class="text-gray-300">Nothing new learned, left after a week.</p>
+    </div>
+
+    <div class="embed-card mt-8">
+      <h3 class="text-blue-400 text-sm font-bold uppercase tracking-wider mb-4">Closed Servers</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+          <h4 class="text-blue-300 font-semibold mb-2">TyreSMP</h4>
+          <p style="color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.5rem;">Sr. Moderator</p>
+          <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 1rem;">Survival • 20-30 Players</p>
+          <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.3rem 0.8rem; border-radius: 0.3rem; font-size: 0.8rem;">Server Shut Down</span>
+        </div>
+
+        <div style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+          <h4 class="text-blue-300 font-semibold mb-2">CyclesMC</h4>
+          <p style="color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.5rem;">Admin</p>
+          <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 1rem;">Survival • 10 Players</p>
+          <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.3rem 0.8rem; border-radius: 0.3rem; font-size: 0.8rem;">Server Shut Down</span>
+        </div>
+
+        <div style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+          <h4 class="text-blue-300 font-semibold mb-2">GatoSMP</h4>
+          <p style="color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.5rem;">Co-Owner</p>
+          <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 1rem;">Survival • 20-30 Players</p>
+          <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.3rem 0.8rem; border-radius: 0.3rem; font-size: 0.8rem;">Server Shut Down</span>
+        </div>
+
+        <div style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+          <h4 class="text-blue-300 font-semibold mb-2">HyperNovaSMP</h4>
+          <p style="color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.5rem;">Sr. Moderator</p>
+          <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 1rem;">Survival • 20-30 Players</p>
+          <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.3rem 0.8rem; border-radius: 0.3rem; font-size: 0.8rem;">Server Shut Down</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Contact Section -->
+<section id="contactSection" class="mt-20 mb-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div class="md:col-span-1"></div>
+  <div class="md:col-span-2">
+    <div class="embed-card">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="text-gray-300 mb-6">
+        Have a project in mind or want to collaborate? Fill out the form below.
+      </p>
+      <form id="contactForm" class="space-y-4">
+        <input name="name" placeholder="Your Name" class="w-full p-3 border border-gray-600 rounded-lg text-sm bg-gray-900 text-gray-100 placeholder-gray-500" required>
+        <input name="subject" placeholder="Subject" class="w-full p-3 border border-gray-600 rounded-lg text-sm bg-gray-900 text-gray-100 placeholder-gray-500" required>
+
+        <div class="flex items-center gap-4 p-3 bg-gray-900 rounded-lg border border-gray-600">
+          <span class="text-gray-300 font-semibold">Contact via:</span>
+          <label class="radio-label"><input type="radio" name="contactType" value="Discord" checked> Discord</label>
+          <label class="radio-label"><input type="radio" name="contactType" value="Email"> Email</label>
+          <span class="text-gray-400 text-xs ml-auto">(Optional)</span>
+        </div>
+
+        <input id="contactInput" name="contactValue" placeholder="Discord Username" class="w-full p-3 border border-gray-600 rounded-lg text-sm bg-gray-900 text-gray-100 placeholder-gray-500">
+        <textarea name="messageText" placeholder="Your Message" class="w-full p-3 border border-gray-600 rounded-lg text-sm bg-gray-900 text-gray-100 placeholder-gray-500 h-32 resize-none" required></textarea>
+        <button type="submit" class="btn-primary w-full text-base py-2"><i class="fas fa-paper-plane mr-2"></i> Send Message</button>
+      </form>
+      <div id="formStatus" class="form-status hidden"></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer class="mt-16 pt-8 border-t border-gray-700 text-center text-sm text-gray-500">
+© 2020 - 2025 Devio. Crafted with precision.
+</footer>
+
+<script>
+// Block F12 / Ctrl+Shift+I/J/C
+document.onkeydown = e => {
+  if ([123, 73, 74, 67].includes(e.keyCode) && (e.ctrlKey || e.shiftKey)) return false;
+};
+// Disable right-click / copy / paste / cut
+['contextmenu','copy','paste','cut'].forEach(evt => document.addEventListener(evt, e => e.preventDefault()));
+
+// Tabs
+const tabs = { aboutBtn: document.getElementById('aboutBtn'), experienceBtn: document.getElementById('experienceBtn'), contactBtn: document.getElementById('contactBtn') };
+const pages = { aboutPage: document.getElementById('aboutPage'), experiencePage: document.getElementById('experiencePage') };
+function showPage(pageId, btnId) { Object.values(pages).forEach(p => p.classList.add('hidden')); Object.values(tabs).forEach(b => b.classList.remove('active')); pages[pageId].classList.remove('hidden'); tabs[btnId].classList.add('active'); }
+tabs.aboutBtn.addEventListener('click', ()=>{showPage('aboutPage','aboutBtn');window.scrollTo({top:0,behavior:'smooth'});});
+tabs.experienceBtn.addEventListener('click', ()=>{showPage('experiencePage','experienceBtn');window.scrollTo({top:0,behavior:'smooth'});});
+tabs.contactBtn.addEventListener('click', ()=>{tabs.contactBtn.classList.add('active');setTimeout(()=>{document.getElementById('contactSection').scrollIntoView({behavior:'smooth'});},100);});
+
+// Time
+function updateTime(){const now=new Date();const time=new Intl.DateTimeFormat('en-US',{hour:'2-digit',minute:'2-digit',hour12:true}).format(now);document.getElementById('currentTime').textContent=`${time} GMT+2`;}
+setInterval(updateTime,60000); updateTime();
+
+// Scroll animations
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}})},{threshold:0.2});
+document.querySelectorAll('.embed-card').forEach(card=>observer.observe(card));
+
+// Contact input toggle
+const contactInput=document.getElementById('contactInput');
+document.getElementsByName('contactType').forEach(radio=>{radio.addEventListener('change',()=>{contactInput.placeholder = radio.value==='Discord'?'Discord Username':'Email Address';});});
+
+// Discord webhook
+const webhookUrl="https://discord.com/api/webhooks/1469404735722360997/HhyGI9PpcLe25N4s-qx2eOa9jNgJjW1F68mDMuqONdv4LyFHZf-i0fvj1fwJSofkEVDB";
+const contactForm=document.getElementById('contactForm');
+const formStatus=document.getElementById('formStatus');
+const pingId="1139581194497970296";
+
+contactForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+
+  const name=e.target.name.value.trim();
+  const subject=e.target.subject.value.trim();
+  const contactType=Array.from(document.getElementsByName('contactType')).find(r=>r.checked).value;
+  const contactValue=e.target.contactValue.value.trim();
+  const messageText=e.target.messageText.value.trim();
+
+  // Validation
+  if(!subject){formStatus.textContent="❌ Subject is required."; formStatus.className="form-status text-red-500"; return;}
+  if(!messageText){formStatus.textContent="❌ Message is required."; formStatus.className="form-status text-red-500"; return;}
+  if(contactType==="Email" && contactValue){
+    const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailPattern.test(contactValue)){formStatus.textContent="❌ Please enter a valid email address."; formStatus.className="form-status text-red-500"; return;}
+  }
+
+  // Prepare Discord embed
+  const embeds=[
+    {title:"1. Name", description:name||"Not Provided", color: name?0x3498DB:0xFF0000},
+    {title:"2. Subject", description:subject, color:subject?0x9B59B6:0xFF0000},
+    {title:`3. ${contactType}`, description:contactValue||"Not Provided", color:contactValue||contactType==="Email"?0x2ECC71:0xFF0000},
+    {title:"4. Message", description:messageText, color:messageText?0xE67E22:0xFF0000}
+  ];
+
+  try {
+    await fetch(webhookUrl, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({content:`<@${pingId}>`, embeds:embeds})
+    });
+    formStatus.textContent="✅ Message sent successfully! I'll get back to you soon.";
+    formStatus.className="form-status text-green-400";
+    contactForm.reset();
+    setTimeout(()=>formStatus.classList.add('hidden'),5000);
+  } catch(err){
+    formStatus.textContent="❌ Failed to send message. Try again later.";
+    formStatus.className="form-status text-red-500";
+  }
+});
+</script>
+
+</body>
+</html>
