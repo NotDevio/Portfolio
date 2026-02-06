@@ -7,6 +7,8 @@
 <title>Devio - Portfolio</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="icon" type="image/webp" href="Images/pfp.webp">
+
 <style>
 * { scrollbar-width: thin; scrollbar-color: #3b82f6 #1e293b; }
 ::-webkit-scrollbar { width: 8px; }
@@ -64,6 +66,7 @@ body {
 
 .fade-page { transition: opacity 0.5s ease; animation: fadeIn 0.5s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
 
 .radio-label {
   display: flex; align-items: center; gap: 8px; margin-right: 15px; cursor: pointer;
@@ -286,7 +289,43 @@ body { -webkit-touch-callout: none; }
       <div class="embed-card">
       <h3 class="text-blue-400 text-sm font-bold uppercase tracking-wider mb-4">Previous Experience</h3>
     </div>
-    <!-- FreshSMP -->
+
+    
+    <!-- FreshSMP Network -->
+    <div class="embed-card">
+      <div class="flex justify-between items-start mb-3">
+        <h3 class="text-xl font-semibold text-blue-300">FreshSMP</h3>
+        <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; font-size: 0.85rem;">Resigned</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem;">
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Junior Moderator</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">LifeSteal | Survival | SkyBlock • 600-700  </span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">December 6, 2025 - February 2, 2026</span>
+      </div>
+      <p class="text-gray-400 text-sm mb-3">
+        <i class="fas fa-link text-blue-400"></i> <a href="https://discord.gg/Freshsmp" target="_blank" class="text-blue-300 hover:text-blue-200 ml-2 selectable">discord.gg/FreshSMP</a> | IP: <span class="font-mono selectable">play.freshsmp.fun</span>
+      </p>
+      <p class="text-gray-300">Gained familiarity with CoreProtect and learned to catch rule breakers</p>
+    </div>
+    
+    <!-- OreBound Network -->
+    <div class="embed-card">
+      <div class="flex justify-between items-start mb-3">
+        <h3 class="text-xl font-semibold text-blue-300">OreBound Network</h3>
+        <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; font-size: 0.85rem;">Resigned</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem;">
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Helper</span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">GrowAnOre • 10 Player Average </span>
+        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">December 6, 2025 - February 2, 2026</span>
+      </div>
+      <p class="text-gray-400 text-sm mb-3">
+        <i class="fas fa-link text-blue-400"></i> <a href="https://discord.gg/Taw7x83sz8" target="_blank" class="text-blue-300 hover:text-blue-200 ml-2 selectable">discord.gg/OreBound</a> | IP: <span class="font-mono selectable">OreBound.net</span>
+      </p>
+      <p class="text-gray-300">Learned how to handle player reports, support the community, and work with the staff team to keep the BoxSMP server running smoothly.</p>
+    </div>
+
+    <!-- RuneMC -->
     <div class="embed-card">
       <div class="flex justify-between items-start mb-3">
         <h3 class="text-xl font-semibold text-blue-300">RuneMC</h3>
@@ -303,22 +342,6 @@ body { -webkit-touch-callout: none; }
       <p class="text-gray-300">This was my first experience staffing on an EarthSMP server. I helped manage player issues, kept the community organized, and ensured the gameplay environment stayed fair and enjoyable.</p>
     </div>
 
-    <!-- OreBound Network -->
-    <div class="embed-card">
-      <div class="flex justify-between items-start mb-3">
-        <h3 class="text-xl font-semibold text-blue-300">OreBound Network</h3>
-        <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500; font-size: 0.85rem;">Resigned</span>
-      </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; font-size: 0.9rem;">
-        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">Helper</span>
-        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">BoxSMP • 5-10 Players</span>
-        <span style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: #93c5fd; padding: 0.4rem 0.8rem; border-radius: 0.4rem; font-weight: 500;">December 6, 2025 - Present</span>
-      </div>
-      <p class="text-gray-400 text-sm mb-3">
-        <i class="fas fa-link text-blue-400"></i> <a href="https://discord.gg/Taw7x83sz8" target="_blank" class="text-blue-300 hover:text-blue-200 ml-2 selectable">discord.gg/OreBound</a> | IP: <span class="font-mono selectable">OreBound.net</span>
-      </p>
-      <p class="text-gray-300">Learned how to handle player reports, support the community, and work with the staff team to keep the BoxSMP server running smoothly.</p>
-    </div>
 
     <!-- Gemstone -->
     <div class="embed-card">
@@ -357,28 +380,28 @@ body { -webkit-touch-callout: none; }
     <div class="embed-card mt-8">
       <h3 class="text-blue-400 text-sm font-bold uppercase tracking-wider mb-4">Closed Servers</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-        <div style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+        <div class="embed-card" style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
           <h4 class="text-blue-300 font-semibold mb-2">TyreSMP</h4>
           <p style="color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.5rem;">Sr. Moderator</p>
           <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 1rem;">Survival • 20-30 Players</p>
           <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.3rem 0.8rem; border-radius: 0.3rem; font-size: 0.8rem;">Server Shut Down</span>
         </div>
 
-        <div style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+        <div  class="embed-card"style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
           <h4 class="text-blue-300 font-semibold mb-2">CyclesMC</h4>
           <p style="color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.5rem;">Admin</p>
           <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 1rem;">Survival • 10 Players</p>
           <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.3rem 0.8rem; border-radius: 0.3rem; font-size: 0.8rem;">Server Shut Down</span>
         </div>
 
-        <div style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+        <div  class="embed-card" style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
           <h4 class="text-blue-300 font-semibold mb-2">GatoSMP</h4>
           <p style="color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.5rem;">Co-Owner</p>
           <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 1rem;">Survival • 20-30 Players</p>
           <span style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.3rem 0.8rem; border-radius: 0.3rem; font-size: 0.8rem;">Server Shut Down</span>
         </div>
 
-        <div style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+        <div class="embed-card" style="background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(59, 130, 246, 0.2); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 1rem; text-align: center;">
           <h4 class="text-blue-300 font-semibold mb-2">HyperNovaSMP</h4>
           <p style="color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.5rem;">Sr. Moderator</p>
           <p style="color: #cbd5e1; font-size: 0.85rem; margin-bottom: 1rem;">Survival • 20-30 Players</p>
@@ -479,10 +502,10 @@ contactForm.addEventListener('submit', async (e)=>{
 
   // Prepare Discord embed
   const embeds=[
-    {title:"1. Name", description:name||"Not Provided", color: name?0x3498DB:0xFF0000},
-    {title:"2. Subject", description:subject, color:subject?0x9B59B6:0xFF0000},
-    {title:`3. ${contactType}`, description:contactValue||"Not Provided", color:contactValue||contactType==="Email"?0x2ECC71:0xFF0000},
-    {title:"4. Message", description:messageText, color:messageText?0xE67E22:0xFF0000}
+    {title:" Name", description:name||"Not Provided", color: name?0x3498DB:0xFF0000},
+    {title:" Subject", description:subject, color:subject?0x9B59B6:0xFF0000},
+    {title:` ${contactType}`, description:contactValue||"Not Provided", color:contactValue||contactType==="Email"?0x2ECC71:0xFF0000},
+    {title:" Message", description:messageText, color:messageText?0xE67E22:0xFF0000}
   ];
 
   try {
